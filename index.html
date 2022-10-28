@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNAKE</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        #root {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 800px;
+            flex-direction: column;
+            transition: all .4s;
+        }
+        .text-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .title {
+            margin: 0 0 5px 0;
+        }
+        .score__wrapper {
+            padding: 1em 0;
+            margin: 0 0 1em 0;
+        }
+        #canvas {
+            /* border: 10px solid black; */
+            box-shadow: #3f3f3f 20px 10px 50px;
+        }
+        .replay-button {
+            min-width: 150px;
+            max-width: 250px;
+            display: block;
+            padding: 1em 2em;
+            background: none;
+            color: inherit;
+            position: relative;
+            z-index: 1;
+            -moz-osx-font-smoothing: grayscale;
+            border: 1px solid;
+            border-radius: 5px;
+            margin: 0 0 1em 0;
+        }
+        .button:focus {
+            outline: none;
+        }
+        .button--ujarak {
+            -webkit-transition: border-color 0.4s, color 0.4s;
+            transition: border-color 0.4s, color 0.4s;
+        }
+        .button--ujarak::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #37474f;
+            z-index: -1;
+            opacity: 0;
+            -webkit-transform: scale3d(0.7, 1, 1);
+            transform: scale3d(0.7, 1, 1);
+            -webkit-transition: -webkit-transform 0.4s, opacity 0.4s;
+            transition: transform 0.4s, opacity 0.4s;
+            -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+            transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .button--ujarak.button--round-s::before {
+            border-radius: 2px;
+        }
+        .button--ujarak.button--inverted::before {
+            background: #7986CB;
+        }
+        .button--ujarak,
+        .button--ujarak::before {
+            -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+            transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .button--ujarak:hover {
+            color: #ffffff; 
+            border-color: #37474f;
+        }
+        .button--ujarak.button--inverted:hover {
+            color: #37474F;
+	        border-color: #fff;
+        }
+        .button--ujarak:hover::before {
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+
+        .hide {
+            opacity: 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class="text-section">
+            <h1 class="title">Snake game</h1>
+            <p class="score__wrapper">Score: <span class="score">0</span></p>
+            <button class="button--ujarak replay-button hide" onclick="restartGame()">Restart</button>
+        </div>
+        <canvas width="500" height="500" id="canvas"></canvas>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
