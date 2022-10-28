@@ -15,8 +15,11 @@ const D_BUTTON = 68;
 
 const MAX_SPEED = 20;
 
+const TILE_OFFSET = 5;
 const TILE_COUNT = 20;
-const TILE_SIZE = canvas.width / TILE_COUNT - 5;
+const TILE_SIZE = canvas.width / TILE_COUNT - TILE_OFFSET;
+
+const COLLISION_OFFSET = 4;
 
 class SnakePart {
   constructor(x, y) {
@@ -70,12 +73,11 @@ const isGameOver = () => {
   }
 
   // check wall collision
-  // !+4 make const
-  if (gameState.snakeHeadX < 0 || gameState.snakeHeadX > TILE_COUNT + 4) {
+  if (gameState.snakeHeadX < 0 || gameState.snakeHeadX > TILE_COUNT + COLLISION_OFFSET) {
     gameOver = true;
   } else if (
     gameState.snakeHeadY < 0 ||
-    gameState.snakeHeadY > TILE_COUNT + 4
+    gameState.snakeHeadY > TILE_COUNT + COLLISION_OFFSET
   ) {
     gameOver = true;
   }
